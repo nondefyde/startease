@@ -1,4 +1,4 @@
-import { copyFile, getTemplateDir } from "./file-manager.js";
+import { addGitignore, copyFile, getTemplateDir } from "./file-manager.js";
 import path from "path";
 import ora from "ora";
 import { sendStat } from "./stat.js";
@@ -36,6 +36,7 @@ export async function createFrontendProject(projectName, framework, language) {
         default:
           break;
       }
+      addGitignore(framework, destinationPath);
 
       // success message
       spinner.succeed(
@@ -60,6 +61,7 @@ export async function createFrontendProject(projectName, framework, language) {
         default:
           break;
       }
+      addGitignore(framework, destinationPath);
 
       // success message
       spinner.succeed(
@@ -67,6 +69,7 @@ export async function createFrontendProject(projectName, framework, language) {
           language.charAt(0).toUpperCase() + language.slice(1)
         } created successfully! : ${destinationPath}`,
       );
+      });
     } else if (framework === "html-x-css-x-javascript") {
       copyFile(getTemplateDir(`frontend/html-css-javascript`), destinationPath);
 
