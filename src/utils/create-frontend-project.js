@@ -4,21 +4,6 @@ import ora from "ora";
 import { sendStat } from "./stat.js";
 
 /**
- * loader
- */
-let stages = [{ message: "Creating Project ...", duration: 2000 }];
-
-async function startSpinner() {
-  for (const stage of stages) {
-    const spinner = ora(stage.message).start();
-    await new Promise((resolve) => setTimeout(resolve, stage.duration));
-    spinner.succeed(stage.message.replace("...", " completed."));
-  }
-
-  stages = [{ message: "Creating Project ...", duration: 2000 }];
-}
-
-/**
  * function to create frontend projects
  * @param {string} framework - {reactjs, vuejs}
  * @param {string} projectName
@@ -27,12 +12,15 @@ async function startSpinner() {
 
 export async function createFrontendProject(projectName, framework, language) {
   try {
+    const spinner = ora("Creating Project ...").start();
+
     const destinationPath = path.join(
       process.cwd(),
       projectName ?? `project-starter-${framework}-template`,
     );
 
     if (framework === "reactjs") {
+      spinner.start('Creating ReactJS project ...')
       //   copy files based on the language chosen
       switch (language) {
         case "javascript":
@@ -46,22 +34,20 @@ export async function createFrontendProject(projectName, framework, language) {
             getTemplateDir(`frontend/reactjs/react-typescript-temp`),
             destinationPath,
           );
-
+          break;
         default:
           break;
       }
       addGitignore(framework, destinationPath);
 
       // success message
-      stages.push({
-        message: `Frontend - ReactJS project with ${
+      spinner.succeed(
+        `Frontend - ReactJS project with ${
           language.charAt(0).toUpperCase() + language.slice(1)
         } created successfully! : ${destinationPath}`,
-        duration: 1000,
-      });
-
-      await startSpinner();
+      );
     } else if (framework === "vuejs") {
+      spinner.start('Creating VueJS project ...')
       switch (language) {
         case "javascript":
           copyFile(
@@ -74,28 +60,27 @@ export async function createFrontendProject(projectName, framework, language) {
             getTemplateDir(`frontend/vuejs/vuejs-typescript-temp`),
             destinationPath,
           );
-
+          break;
         default:
           break;
       }
       addGitignore(framework, destinationPath);
 
       // success message
-      stages.push({
-        message: `Frontend - VueJs project with ${
+      spinner.succeed(
+        `Frontend - VueJs project with ${
           language.charAt(0).toUpperCase() + language.slice(1)
         } created successfully! : ${destinationPath}`,
-      });
+      );
     } else if (framework === "html-x-css-x-javascript") {
+      spinner.start('Creating HTML, CSS, and JavaScript project ...')
+
       copyFile(getTemplateDir(`frontend/html-css-javascript`), destinationPath);
 
       // success message
-      stages.push({
-        message: `Frontend - plain html with css and javascript created successfully! : ${destinationPath}`,
-        duration: 1000,
-      });
-
-      await startSpinner();
+      spinner.succeed(
+        `Frontend - HTML, CSS, and JavaScript project created! : ${destinationPath}`,
+      );
     }
 
     // update stat
