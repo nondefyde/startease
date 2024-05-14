@@ -51,8 +51,9 @@ export async function createBackendProject(
   orm,
   installDependencies,
 ) {
-  const spinner = ora("Creating Project ...").start();
   try {
+    const spinner = ora("Creating Project ...").start();
+
     const destinationPath = path.join(
       process.cwd(),
       projectName ?? `project-starter-${framework}-template`,

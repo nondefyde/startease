@@ -11,14 +11,16 @@ import { sendStat } from "./stat.js";
  */
 
 export async function createFrontendProject(projectName, framework, language) {
-  const spinner = ora("Creating Project ...").start();
   try {
+    const spinner = ora("Creating Project ...").start();
+
     const destinationPath = path.join(
       process.cwd(),
       projectName ?? `project-starter-${framework}-template`,
     );
 
     if (framework === "reactjs") {
+      spinner.start('Creating ReactJS project ...')
       //   copy files based on the language chosen
       switch (language) {
         case "javascript":
@@ -32,7 +34,7 @@ export async function createFrontendProject(projectName, framework, language) {
             getTemplateDir(`frontend/reactjs/react-typescript-temp`),
             destinationPath,
           );
-
+          break;
         default:
           break;
       }
@@ -45,6 +47,7 @@ export async function createFrontendProject(projectName, framework, language) {
         } created successfully! : ${destinationPath}`,
       );
     } else if (framework === "vuejs") {
+      spinner.start('Creating VueJS project ...')
       switch (language) {
         case "javascript":
           copyFile(
@@ -57,7 +60,7 @@ export async function createFrontendProject(projectName, framework, language) {
             getTemplateDir(`frontend/vuejs/vuejs-typescript-temp`),
             destinationPath,
           );
-
+          break;
         default:
           break;
       }
@@ -69,13 +72,14 @@ export async function createFrontendProject(projectName, framework, language) {
           language.charAt(0).toUpperCase() + language.slice(1)
         } created successfully! : ${destinationPath}`,
       );
-      });
     } else if (framework === "html-x-css-x-javascript") {
+      spinner.start('Creating HTML, CSS, and JavaScript project ...')
+
       copyFile(getTemplateDir(`frontend/html-css-javascript`), destinationPath);
 
       // success message
       spinner.succeed(
-        `Frontend - plain html with css and javascript created successfully! : ${destinationPath}`,
+        `Frontend - HTML, CSS, and JavaScript project created! : ${destinationPath}`,
       );
     }
 
