@@ -8,6 +8,8 @@ StartEase is a command-line interface (CLI) tool designed to make project setup 
 
 [![Made in Nigeria](https://img.shields.io/badge/made%20in-nigeria-008751.svg?style=flat-square)](https://github.com/acekyd/made-in-nigeria)
 
+[![](https://img.shields.io/badge/Chat_with_StartEase-Ask_Cody-%238A16D7?labelColor=%23383838)](https://sourcegraph.com/github.com/JC-Coder/startease)
+
 ## Features
 
 - **Effortless Scaffolding**: StartEase streamlines project creation and technology scaffolding, providing a smooth and efficient experience for developers.
