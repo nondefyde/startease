@@ -3,8 +3,8 @@
 import figlet from "figlet";
 import { program } from "commander";
 import chalk from "chalk";
-import useGradient from "./src/utils/useGradient.js";
-import { createBackendProject } from "./src/utils/create-backend-project.js";
+import useGradient from "./src/core/utils/useGradient.js";
+import { createBackendProject } from "./src/core/create-backend-project.js";
 import {
   promptBackendFramework,
   promptDatabase,
@@ -15,10 +15,10 @@ import {
   promptProjectName,
   promptProjectStack,
   promptDependenciesInstall
-} from "./src/utils/prompts.js";
-import { createFrontendProject } from "./src/utils/create-frontend-project.js";
-import { validateProjectName } from "./src/utils/helper.js";
-import { sendQueuedStats } from "./src/utils/stat.js";
+} from "./src/core/prompts.js";
+import { createFrontendProject } from "./src/core/create-frontend-project.js";
+import { validateProjectName } from "./src/core/utils/helper.js";
+import { sendQueuedStats } from "./src/core/stat.js";
 
 const toolName = "StartEase";
 const jsBackendStacks = ["expressjs", "nestjs"];
