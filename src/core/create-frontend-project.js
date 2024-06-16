@@ -1,4 +1,4 @@
-import { addGitignore, copyFile, getTemplateDir } from "./file-manager.js";
+import { addGitignore, copyFile, getTemplateDir } from "./utils/file-manager.js";
 import path from "path";
 import ora from "ora";
 import { sendStat } from "./stat.js";
