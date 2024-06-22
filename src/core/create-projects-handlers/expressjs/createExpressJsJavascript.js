@@ -11,7 +11,7 @@ import { EXPRESSJS_SERVER_TEMPLATE } from "../../../templates/backend/expressjs/
 import {
   ExpressJsMongodbMongooseConnectionTemplate,
   ExpressJsMongoDbMongooseSampleSchema,
-} from "../../../templates/backend/expressjs/base/database.js";
+} from "../../../../templates/backend/expressjs/base/database.js";
 import { ExpressJsEnvironmentTemplate } from "../../../templates/backend/expressjs/base/config.js";
 
 export async function createExpressJsJavascriptProject(

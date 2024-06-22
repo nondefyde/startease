@@ -14,7 +14,7 @@ import {
   promptOrm,
   promptProjectName,
   promptProjectStack,
-  promptDependenciesInstall
+  promptDependenciesInstall,
 } from "./src/core/prompts.js";
 import { createFrontendProject } from "./src/core/create-frontend-project.js";
 import { validateProjectName } from "./src/core/utils/helper.js";
@@ -57,7 +57,7 @@ async function startProject() {
   projectStack = await promptProjectStack();
 
   // process sending of stats in background
-  sendQueuedStats();
+  await sendQueuedStats();
 
   /**
    * start prompts
@@ -84,9 +84,14 @@ async function startProject() {
       }
     }
     installDependencies = await promptDependenciesInstall();
-    
 
-    await createBackendProject(projectName, framework, database, orm, installDependencies);
+    await createBackendProject(
+      projectName,
+      framework,
+      database,
+      orm,
+      installDependencies,
+    );
   }
 }
 
