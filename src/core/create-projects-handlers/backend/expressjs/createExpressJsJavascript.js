@@ -14,13 +14,13 @@ import {
 } from "../../../../templates/backend/expressjs/base/database.js";
 import { ExpressJsEnvironmentTemplate } from "../../../../templates/backend/expressjs/base/config.js";
 
-export async function createExpressJsJavascriptProject(
+export async function createExpressJsJavascriptProject({
   framework,
   database,
   orm,
   destinationPath,
   spinner,
-) {
+}) {
   try {
     let database_config = "";
     let database_config_import = "";

@@ -29,14 +29,14 @@ export async function createBackendProject(
 
     switch (framework) {
       case "expressjs":
-        await createExpressJsJavascriptProject(
+        await createExpressJsJavascriptProject({
           projectName,
           framework,
           database,
           orm,
           destinationPath,
           spinner,
-        );
+        });
         break;
       case "nestjs":
         await createNestjsProject({

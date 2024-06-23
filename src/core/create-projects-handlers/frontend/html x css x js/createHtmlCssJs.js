@@ -5,10 +5,7 @@ export async function createHtmlCssJsProject({ destinationPath, spinner }) {
   spinner.start("Creating HTML, CSS, and JavaScript project ...");
 
   // copy project files
-  copyFile(
-    getTemplateDir(`frontend/html-css-javascript/index.html`),
-    destinationPath,
-  );
+  copyFile(getTemplateDir(`frontend/html-css-javascript`), destinationPath);
 
   // success message
   spinner.succeed(

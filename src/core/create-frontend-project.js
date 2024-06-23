@@ -4,6 +4,7 @@ import ora from "ora";
 import { sendStat } from "./stat.js";
 import { createReactProject } from "./create-projects-handlers/frontend/react/base.js";
 import { createVueProject } from "./create-projects-handlers/frontend/vue/base.js";
+import { createHtmlCssJsProject } from "./create-projects-handlers/frontend/html x css x js/createHtmlCssJs.js";
 
 /**
  * function to create frontend projects
@@ -53,72 +54,6 @@ export async function createFrontendProject(projectName, framework, language) {
     }
 
     addGitignore({ framework, destinationPath });
-
-    // return;
-
-    // if (framework === "reactjs") {
-    //   spinner.start("Creating ReactJS project ...");
-    //   //   copy files based on the language chosen
-    //   switch (language) {
-    //     case "javascript":
-    //       copyFile(
-    //         getTemplateDir(`frontend/reactjs/react-javascript-temp`),
-    //         destinationPath,
-    //       );
-    //       break;
-    //     case "typescript":
-    //       copyFile(
-    //         getTemplateDir(`frontend/reactjs/react-typescript-temp`),
-    //         destinationPath,
-    //       );
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    //   addGitignore(framework, destinationPath);
-
-    //   // success message
-    //   spinner.succeed(
-    //     `Frontend - ReactJS project with ${
-    //       language.charAt(0).toUpperCase() + language.slice(1)
-    //     } created successfully! : ${destinationPath}`,
-    //   );
-    // } else if (framework === "vuejs") {
-    //   spinner.start("Creating VueJS project ...");
-    //   switch (language) {
-    //     case "javascript":
-    //       copyFile(
-    //         getTemplateDir(`frontend/vuejs/vuejs-javascript-temp`),
-    //         destinationPath,
-    //       );
-    //       break;
-    //     case "typescript":
-    //       copyFile(
-    //         getTemplateDir(`frontend/vuejs/vuejs-typescript-temp`),
-    //         destinationPath,
-    //       );
-    //       break;
-    //     default:
-    //       break;
-    //   }
-    //   addGitignore(framework, destinationPath);
-
-    //   // success message
-    //   spinner.succeed(
-    //     `Frontend - VueJs project with ${
-    //       language.charAt(0).toUpperCase() + language.slice(1)
-    //     } created successfully! : ${destinationPath}`,
-    //   );
-    // } else if (framework === "html-x-css-x-javascript") {
-    //   spinner.start("Creating HTML, CSS, and JavaScript project ...");
-
-    //   copyFile(getTemplateDir(`frontend/html-css-javascript`), destinationPath);
-
-    //   // success message
-    //   spinner.succeed(
-    //     `Frontend - HTML, CSS, and JavaScript project created! : ${destinationPath}`,
-    //   );
-    // }
 
     // update stat
     sendStat("startease", framework).then(() => {});

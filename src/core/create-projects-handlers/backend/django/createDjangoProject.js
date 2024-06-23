@@ -111,5 +111,7 @@ export async function createDjangoProject({
     shell.exec(`git add .`);
     shell.exec(`git commit -m "Initial commit"`);
     shell.cd("-");
+
+    spinner.succeed();
   }
 }
