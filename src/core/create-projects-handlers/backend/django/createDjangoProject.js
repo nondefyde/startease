@@ -3,17 +3,17 @@ import {
   getTemplateDir,
   updateFileContent,
   writeToFile,
-} from "../../utils/file-manager.js";
+} from "../../../utils/file-manager.js";
 import shell from "shelljs";
-import { DJANGO_MANAGER } from "../../../templates/backend/django/base/manage.js";
-import { DJANGO_WSGI } from "../../../templates/backend/django/base/wsgi.js";
-import { DJANGO_ASGI } from "../../../templates/backend/django/base/asgi.js";
-import { DJANGO_SETTINGS } from "../../../templates/backend/django/base/settings.js";
-import { DJANGO_ENV_VARIABLES } from "../../../templates/backend/django/base/env.js";
+import { DJANGO_MANAGER } from "../../../../templates/backend/django/base/manage.js";
+import { DJANGO_WSGI } from "../../../../templates/backend/django/base/wsgi.js";
+import { DJANGO_ASGI } from "../../../../templates/backend/django/base/asgi.js";
+import { DJANGO_SETTINGS } from "../../../../templates/backend/django/base/settings.js";
+import { DJANGO_ENV_VARIABLES } from "../../../../templates/backend/django/base/env.js";
 import {
   DJANGO_POSTGRES_SETUP,
   DJANGO_SQLITE_SETUP,
-} from "../../../templates/backend/django/base/database.js";
+} from "../../../../templates/backend/django/base/database.js";
 
 export async function createDjangoProject({
   projectName,

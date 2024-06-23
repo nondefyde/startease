@@ -4,9 +4,9 @@ import ora from "ora";
 import { processDependenciesInstall } from "./utils/helper.js";
 import { sendStat } from "./stat.js";
 import { errorHandler } from "./utils/errorHandler.js";
-import { createExpressJsJavascriptProject } from "./create-projects-handlers/expressjs/createExpressJsJavascript.js";
-import { createNestjsProject } from "./create-projects-handlers/nestjs/createNestjsProject.js";
-import { createDjangoProject } from "./create-projects-handlers/django/createDjangoProject.js";
+import { createExpressJsJavascriptProject } from "./create-projects-handlers/backend/expressjs/createExpressJsJavascript.js";
+import { createNestjsProject } from "./create-projects-handlers/backend/nestjs/createNestjsProject.js";
+import { createDjangoProject } from "./create-projects-handlers/backend/django/createDjangoProject.js";
 
 /**
  * function to create backend projects
@@ -59,7 +59,7 @@ export async function createBackendProject(
         break;
     }
 
-    addGitignore(framework, destinationPath);
+    addGitignore({ framework, destinationPath });
 
     // process dependencies install
     if (installDependencies) {

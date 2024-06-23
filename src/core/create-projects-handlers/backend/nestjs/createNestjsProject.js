@@ -1,20 +1,20 @@
 import {
   NEST_MONGOOSE_PACKAGE,
   NestjsPackageJsonTemplate,
-} from "../../../templates/backend/nestjs/base/nestjs-package-json.js";
+} from "../../../../templates/backend/nestjs/base/nestjs-package-json.js";
 import {
   copyFile,
   createAndUpdateFile,
   getTemplateDir,
   updateFileContent,
   writeToFile,
-} from "../../utils/file-manager.js";
-import { AppModuleContent } from "../../../templates/backend/nestjs/base/app-module.js";
-import { ENVIRONMENT_TEMPLATE } from "../../../templates/backend/nestjs/base/environment.js";
+} from "../../../utils/file-manager.js";
+import { AppModuleContent } from "../../../../templates/backend/nestjs/base/app-module.js";
+import { ENVIRONMENT_TEMPLATE } from "../../../../templates/backend/nestjs/base/environment.js";
 import {
   MongodbDatabaseConfig,
   MongodbSchema,
-} from "../../../templates/backend/nestjs/base/databases.js";
+} from "../../../../templates/backend/nestjs/base/databases.js";
 
 export async function createNestjsProject({
   destinationPath,

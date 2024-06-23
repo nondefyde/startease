@@ -1,6 +1,7 @@
 import fs from "fs-extra";
 import * as path from "path";
 import { fileURLToPath } from "url";
+import { GIT_IGNORE_CONTENT_1, GIT_IGNORE_CONTENT_2 } from "../shared.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -148,20 +149,30 @@ export const getTemplateDir = (filePath) => {
 };
 
 /**
- * Add .gitignore file to project scaffold
- * @param {string} type
+ * Add .gitignore file to project scaffold based on the framework
+ * @param {string} framework
  * @param {string} destination
+ * @returns {void}
  */
-export function addGitignore(type, destination) {
-  const templateDir = getTemplateDir("gitignores");
-  const gitignoreDestination = `${destination}/.gitignore`;
-
-  if (["reactjs", "vuejs"].includes(type)) {
-    type = "nextjs";
+export function addGitignore({ framework, destinationPath }) {
+  switch (framework) {
+    case "reactjs":
+    case "nextjs":
+    case "vuejs":
+      fs.writeFileSync(
+        `${destinationPath}/.gitignore`,
+        GIT_IGNORE_CONTENT_1.replace(/\n/g, "\r\n"), // replace newline with windows newline
+      );
+      break;
+    case "nestjs":
+    case "django":
+    case "expressjs":
+      fs.writeFileSync(
+        `${destinationPath}/.gitignore`,
+        GIT_IGNORE_CONTENT_2.replace(/\n/g, "\r\n"), // replace newline with windows newline
+      );
+      break;
+    default:
+      break;
   }
-
-  const gitignoreSource = `${templateDir}/${type}`;
-
-  fs.createFileSync(gitignoreDestination);
-  fs.copyFileSync(gitignoreSource, gitignoreDestination);
 }

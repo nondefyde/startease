@@ -1,4 +1,4 @@
-import { ExpressJsPackageJsonTemplate } from "../../../templates/backend/expressjs/base/package-json.js";
+import { ExpressJsPackageJsonTemplate } from "../../../../templates/backend/expressjs/base/package-json.js";
 import {
   copyFile,
   createAndUpdateFile,
@@ -6,13 +6,13 @@ import {
   getTemplateDir,
   updateFileContent,
   writeToFile,
-} from "../../utils/file-manager.js";
-import { EXPRESSJS_SERVER_TEMPLATE } from "../../../templates/backend/expressjs/base/server.js";
+} from "../../../utils/file-manager.js";
+import { EXPRESSJS_SERVER_TEMPLATE } from "../../../../templates/backend/expressjs/base/server.js";
 import {
   ExpressJsMongodbMongooseConnectionTemplate,
   ExpressJsMongoDbMongooseSampleSchema,
 } from "../../../../templates/backend/expressjs/base/database.js";
-import { ExpressJsEnvironmentTemplate } from "../../../templates/backend/expressjs/base/config.js";
+import { ExpressJsEnvironmentTemplate } from "../../../../templates/backend/expressjs/base/config.js";
 
 export async function createExpressJsJavascriptProject(
   framework,
