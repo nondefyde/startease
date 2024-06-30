@@ -5,6 +5,7 @@ import { sendStat } from "./stat.js";
 import { createReactProject } from "./create-projects-handlers/frontend/react/base.js";
 import { createVueProject } from "./create-projects-handlers/frontend/vue/base.js";
 import { createHtmlCssJsProject } from "./create-projects-handlers/frontend/html x css x js/createHtmlCssJs.js";
+import { errorHandler } from "./utils/errorHandler.js";
 
 /**
  * function to create frontend projects
@@ -58,7 +59,6 @@ export async function createFrontendProject(projectName, framework, language) {
     // update stat
     sendStat("startease", framework).then(() => {});
   } catch (e) {
-    console.log(`Error Creating Frontend Project: ${e}`);
-    console.error(e);
+    errorHandler.handleError(e);
   }
 }
