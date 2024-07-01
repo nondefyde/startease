@@ -21,6 +21,7 @@ export const ExpressJsPackageJsonTemplate = {
     helmet: "^7.0.0",
     morgan: "^1.10.0",
     winston: "^3.10.0",
+    compression: "^1.7.4",
   },
   devDependencies: {
     eslint: "^8.56.0",
