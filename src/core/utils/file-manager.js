@@ -6,8 +6,6 @@ import { GIT_IGNORE_CONTENT_1, GIT_IGNORE_CONTENT_2 } from "../shared.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-console.log("dirname", __dirname);
-
 /**
  * checks if a directory is empty
  */
