@@ -14,7 +14,8 @@ import {
   promptOrm,
   promptProjectName,
   promptProjectStack,
-  promptDependenciesInstall
+  promptDependenciesInstall,
+  promptBackendLanguage,
 } from "./src/core/prompts.js";
 import { createFrontendProject } from "./src/core/create-frontend-project.js";
 import { validateProjectName } from "./src/core/utils/helper.js";
@@ -57,7 +58,7 @@ async function startProject() {
   projectStack = await promptProjectStack();
 
   // process sending of stats in background
-  sendQueuedStats();
+  await sendQueuedStats();
 
   /**
    * start prompts
@@ -72,21 +73,32 @@ async function startProject() {
 
     return await createFrontendProject(projectName, framework, language);
   } else if (projectStack === "backend") {
-    framework = await promptBackendFramework();
+    language = await promptBackendLanguage();
+    framework = await promptBackendFramework(language);
 
-    initDB = await promptInitDatabase();
+    // note: this is done because there is no other database and orm for typescript except mongoose and mongodb
+    // the default template for typescript is express-ts, and it ships with mongoose and mongodb by default
+    if (language !== "typescript") {
+      initDB = await promptInitDatabase();
 
-    if (initDB) {
-      database = await promptDatabase(framework);
+      if (initDB) {
+        database = await promptDatabase(framework);
 
-      if (jsBackendStacks.includes(framework)) {
-        orm = await promptOrm(database);
+        if (jsBackendStacks.includes(framework)) {
+          orm = await promptOrm(database);
+        }
       }
     }
     installDependencies = await promptDependenciesInstall();
-    
 
-    await createBackendProject(projectName, framework, database, orm, installDependencies);
+    await createBackendProject({
+      projectName,
+      framework,
+      database,
+      orm,
+      installDependencies,
+      language,
+    });
   }
 }
 

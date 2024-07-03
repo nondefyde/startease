@@ -1,4 +1,4 @@
-import { ExpressJsPackageJsonTemplate } from "../../../templates/backend/expressjs/base/package-json.js";
+import { ExpressJsPackageJsonTemplate } from "../../../../templates/backend/expressjs/base/package-json.js";
 import {
   copyFile,
   createAndUpdateFile,
@@ -6,36 +6,33 @@ import {
   getTemplateDir,
   updateFileContent,
   writeToFile,
-} from "../../utils/file-manager.js";
-import { EXPRESSJS_SERVER_TEMPLATE } from "../../../templates/backend/expressjs/base/server.js";
+} from "../../../utils/file-manager.js";
+import { EXPRESSJS_SERVER_TEMPLATE } from "../../../../templates/backend/expressjs/base/server.js";
 import {
   ExpressJsMongodbMongooseConnectionTemplate,
   ExpressJsMongoDbMongooseSampleSchema,
-} from "../../../templates/backend/expressjs/base/database.js";
-import { ExpressJsEnvironmentTemplate } from "../../../templates/backend/expressjs/base/config.js";
+} from "../../../../templates/backend/expressjs/base/database.js";
+import { ExpressJsEnvironmentTemplate } from "../../../../templates/backend/expressjs/base/config.js";
+import { errorHandler } from "../../../utils/errorHandler.js";
 
-export async function createExpressJsJavascriptProject(
+export async function createExpressJsJavascriptProject({
   framework,
   database,
   orm,
   destinationPath,
   spinner,
-) {
+}) {
   try {
     let database_config = "";
     let database_config_import = "";
     let additional_environment_variables = "";
     let packageJson = ExpressJsPackageJsonTemplate;
 
-    console.log({ framework, database, orm, destinationPath });
-
     // copy expressjs template to directory
     copyFile(
       getTemplateDir("backend/expressjs/expressjs-temp"),
       destinationPath,
     );
-
-    console.log("check 1");
 
     // add server.js file
     writeToFile(`${destinationPath}/src/server.js`, EXPRESSJS_SERVER_TEMPLATE);
@@ -105,8 +102,9 @@ export async function createExpressJsJavascriptProject(
       JSON.stringify(ExpressJsPackageJsonTemplate, null, "  "),
     );
   } catch (error) {
-    console.log(
-      `Error: There was an error creating the project, please try again`,
+    errorHandler.handleError(error);
+    spinner.fail(
+      "Error: There was an error creating the project, please try again",
     );
   }
 }

@@ -16,6 +16,7 @@ export class ErrorHandler {
 
   handleDevError(error) {
     this.logger.error("Error Occurred : ", error);
+    console.error(error);
     throw error;
   }
 

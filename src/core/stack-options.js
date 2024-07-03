@@ -1,50 +1,31 @@
-export const STACK_OPTIONS = {
-  stacks: [
-    {
-      name: "backend",
-      frameworks: [
-        {
-          name: "nestjs",
-          key: "nestjs",
+export const PROJECT_CONSTANTS = {
+  frameworks: {
+    expressjs: "expressjs",
+    nestjs: "nestjs",
+    django: "django",
+    reactjs: "reactjs",
+    vuejs: "vuejs",
+    "html-x-css-x-javascript": "html-x-css-x-javascript",
+  },
+  databases: {
+    mongodb: "mongodb",
+    postgresql: "postgresql",
+    mysql: "mysql",
+    sqlite: "sqlite",
+  },
+  orms: {
+    mongoose: "mongoose",
+    typeorm: "typeorm",
+  },
+  templates: {
+    frontend: {},
+    backend: {
+      "express-ts": {
+        0: {
+          matches: ["expressjs", "typescript", "mongoose"],
+          dir: "backend/express-ts/v0",
         },
-        {
-          name: "expressjs",
-          key: "expressjs",
-        },
-      ],
-      databases: [
-        {
-          name: "mongodb",
-          key: "-db1",
-        },
-        {
-          name: "postgresql",
-          key: "-db2",
-        },
-        {
-          name: "mysql",
-          key: "-db3",
-        },
-      ],
-      orms: [
-        {
-          name: "mongoose",
-          key: "-orm1",
-        },
-        {
-          name: "typeorm",
-          key: "-orm2",
-        },
-      ],
+      },
     },
-    {
-      name: "frontend",
-      frameworks: [
-        {
-          name: "reactjs",
-          key: "reactjs",
-        },
-      ],
-    },
-  ],
+  },
 };

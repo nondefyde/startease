@@ -51,13 +51,41 @@ export async function promptFrontendLanguage() {
   return ans.language.toLowerCase().replace(/ /g, "-");
 }
 
-export async function promptBackendFramework() {
+export async function promptBackendLanguage() {
+  const ans = await inquirer.prompt([
+    {
+      type: "list",
+      name: "language",
+      message: "Choose Your Preferred Language:",
+      choices: ["JavaScript", "TypeScript", "Python"],
+    },
+  ]);
+
+  return ans.language.toLowerCase().replace(/ /g, "-");
+}
+
+export async function promptBackendFramework(language) {
+  let choices = [];
+
+  switch (language) {
+    case "javascript":
+    case "typescript":
+      choices = ["expressjs", "nestjs"];
+      break;
+    case "django":
+      choices = ["django"];
+      break;
+    default:
+      choices = ["expressjs", "nestjs"];
+      break;
+  }
+
   const ans = await inquirer.prompt([
     {
       type: "list",
       name: "framework",
       message: "Choose a framework:",
-      choices: ["NestJS", "ExpressJs", "Django"],
+      choices,
     },
   ]);
 
