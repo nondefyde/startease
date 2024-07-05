@@ -1,5 +1,21 @@
 import shell, { exit } from "shelljs";
 import isOnline from "is-online";
+import axios from "axios";
+import semver from "semver";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
+import chalk from "chalk";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+const packageJson = JSON.parse(
+  fs.readFileSync(
+    path.join(__dirname, "..", "..", "..", "package.json"),
+    "utf8",
+  ),
+);
 
 /**
  * validate project name
@@ -60,5 +76,30 @@ export async function processDependenciesInstall(framework, destinationPath) {
     console.log(
       `You don't have an active internet connection, aborting dependency install`,
     );
+  }
+}
+
+export async function checkForUpdate() {
+  try {
+    const response = await axios.get(
+      "https://registry.npmjs.org/startease-cli",
+    );
+    const latestVersion = response.data["dist-tags"].latest;
+    const currentVersion = packageJson.version;
+
+    if (semver.gt(latestVersion, currentVersion)) {
+      console.log(
+        chalk.yellow(
+          `🚀 Exciting news! StartEase v${latestVersion} is now available!`,
+        ),
+      );
+      console.log(chalk.cyan(`Upgrade now: npm install -g startease-cli`));
+      console.log(
+        chalk.blue(`Learn more: https://github.com/JC-Coder/startease`),
+      );
+    }
+  } catch (error) {
+    // don't do anything
+    // the catch is added to prevent obstructing user workflow
   }
 }

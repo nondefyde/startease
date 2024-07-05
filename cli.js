@@ -18,7 +18,10 @@ import {
   promptBackendLanguage,
 } from "./src/core/prompts.js";
 import { createFrontendProject } from "./src/core/create-frontend-project.js";
-import { validateProjectName } from "./src/core/utils/helper.js";
+import {
+  checkForUpdate,
+  validateProjectName,
+} from "./src/core/utils/helper.js";
 import { sendQueuedStats } from "./src/core/stat.js";
 
 const toolName = "StartEase";
@@ -47,6 +50,9 @@ async function startProject() {
   const initialMsg = `Simplify Project Setup with the. ${chalk.green(
     toolName,
   )} CLI Tool.`;
+
+  // check for update
+  await checkForUpdate();
 
   // render cli title
   renderTitle();
