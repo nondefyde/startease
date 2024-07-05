@@ -79,6 +79,15 @@ export async function processDependenciesInstall(framework, destinationPath) {
   }
 }
 
+/**
+ * Checks for updates to the StartEase CLI tool.
+ *
+ * This function fetches the latest version of the StartEase CLI from the npm registry and compares it to the current version installed. If a newer version is available, it logs a message to the console with information about the update.
+ *
+ * @async
+ * @function checkForUpdate
+ * @returns {void}
+ */
 export async function checkForUpdate() {
   try {
     const response = await axios.get(
