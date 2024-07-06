@@ -67,7 +67,7 @@ app.use(limiter);
 //Middleware to allow CORS from frontend
 app.use(
 	cors({
-		origin: ['https://abeghelp.me', 'https://www.abeghelp.me', 'http://localhost:3000', 'http://localhost:3001'],
+		origin: '*',
 		credentials: true,
 	})
 );
@@ -75,7 +75,7 @@ app.use(
 //prevent Cross-Site Scripting (XSS) attacks by not allowing the loading of content from other domains.
 const contentSecurityPolicy = {
 	directives: {
-		defaultSrc: ["'self'", 'https://www.abeghelp.me', 'https://abeghelp.me', 'https://api.abeghelp.me'],
+		defaultSrc: ["'self'"],
 		scriptSrc: ["'self'"],
 		styleSrc: ["'self'"],
 		imgSrc: ["'self'"],
